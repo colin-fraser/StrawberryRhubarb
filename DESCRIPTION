@@ -1,12 +1,12 @@
 Package: StrawberryRhubarb
-Title: What the Package Does (One Line, Title Case)
+Title: Another package for doing pie charts in ggplot
 Version: 0.0.0.9000
 Authors@R: 
     person(given = "Colin",
            family = "Fraser",
            role = c("aut", "cre"),
            email = "colin.r.fraser@gmail.com")
-Description: What the package does (one paragraph).
-License: What license it uses
+Description: This package makes it easy to create pie charts in ggplot.
+License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
