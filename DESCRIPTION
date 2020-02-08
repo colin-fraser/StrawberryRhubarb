@@ -10,3 +10,5 @@ Description: This package makes it easy to create pie charts in ggplot.
 License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
+URL: https://github.com/colin-fraser/StrawberryRhubarb
+BugReports: https://github.com/colin-fraser/StrawberryRhubarb/issues
