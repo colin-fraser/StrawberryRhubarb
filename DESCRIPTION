@@ -12,3 +12,5 @@ Encoding: UTF-8
 LazyData: true
 URL: https://github.com/colin-fraser/StrawberryRhubarb
 BugReports: https://github.com/colin-fraser/StrawberryRhubarb/issues
+Suggests: 
+    testthat (>= 2.1.0)
