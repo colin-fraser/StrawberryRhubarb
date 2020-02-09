@@ -56,7 +56,7 @@ centered_slice <- function(theta, theta_0 = 0, radius = 0.5, gp = NULL,
 #' @return
 #' @export
 #'
-#' @importFrom ggplot2 ggproto
+#' @import ggplot2
 #' @import grid
 pie_slice <- function(theta, theta_0 = 0, x_0 = 0.5, y_0 = 0.5, radius = 0.5, gp = NULL,
                            n_points = 100) {
@@ -83,6 +83,7 @@ setup_pie_data <- function(data, params) {
     data$theta_0 <- 0
     return(data)
   }
+
   data <- transform(data, theta_0 = c(0, cumsum(theta[1:(nrow(data)-1)])))
   data
 }
@@ -92,12 +93,10 @@ GeomPie <- ggproto("GeomPie", Geom,
    default_aes = aes(x = 0, y = 0, colour = 'black', alpha = 1, size = 1,
                      radius = .45, fill = "#EDB270"),  # fill is pie crust
    setup_data = setup_pie_data,
-   draw_panel = function(data, panel_params, coord) {
+   draw_key = draw_key_rect,
+   draw_group = function(data, panel_params, coord) {
      # browser()
      coords <- coord$transform(data, panel_params)
-     print(coords)
-     print(panel_params)
-     print(coords)
      out <- pie_slices(coords)
      out
    }
@@ -118,7 +117,7 @@ GeomPie <- ggproto("GeomPie", Geom,
 #' @export
 #'
 #' @examples
-geom_pie <- function(mapping = NULL, data = NULL, stat = "identity",
+geom_pie <- function(mapping = NULL, data = NULL, stat = "pie_rescale",
                     position = "identity", na.rm = FALSE, show.legend = NA,
                     inherit.aes = TRUE, ...) {
   layer(
@@ -127,3 +126,20 @@ geom_pie <- function(mapping = NULL, data = NULL, stat = "identity",
     params = list(na.rm = na.rm, ...)
   )
 }
+
+StatPieRescale <- ggproto(
+  "StatPieRescale",
+  Stat,
+  required_aes = "theta",
+  compute_panel = function(data, scales) {
+    data$theta = data$theta * 2*pi / sum(data$theta)
+    data
+  }
+)
+
+stat_pie_rescale <- function(mapping = NULL, data = NULL,
+                             position = "identity", na.rm = FALSE, show.legend = NA,
+                             inherit.aes = TRUE, ...) {
+  layer()
+}
+
