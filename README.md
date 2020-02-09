@@ -12,15 +12,7 @@ Pies in ggplot, at last.
 ``` r
 library(ggplot2)
 library(StrawberryRhubarb)
-library(dplyr)
-#> 
-#> Attaching package: 'dplyr'
-#> The following objects are masked from 'package:stats':
-#> 
-#>     filter, lag
-#> The following objects are masked from 'package:base':
-#> 
-#>     intersect, setdiff, setequal, union
+library(dplyr, warn.conflicts = F)
 ggplot2::diamonds %>% 
   count(cut) %>% 
   ggplot(aes(theta = n, fill = cut)) +
