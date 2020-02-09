@@ -14,3 +14,8 @@ URL: https://github.com/colin-fraser/StrawberryRhubarb
 BugReports: https://github.com/colin-fraser/StrawberryRhubarb/issues
 Suggests: 
     testthat (>= 2.1.0)
+Imports: 
+    grid,
+    ggplot2,
+    magrittr
+RoxygenNote: 7.0.2
