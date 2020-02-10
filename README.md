@@ -32,7 +32,9 @@ ggplot2::diamonds %>%
   ggplot(aes(theta = n, fill = cut, radius = scales::rescale(total_n, c(.15, .45)))) +
   facet_grid(clarity ~ color) +
   geom_pie() + 
-  coord_fixed()
+  coord_fixed() +
+  labs(title = "Distribution of diamond type by color, cut, and clarity",
+       y = "clarity", x = "color")
 ```
 
 <img src="man/figures/README-unnamed-chunk-2-2.png" width="100%" />
