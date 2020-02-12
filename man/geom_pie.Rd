@@ -15,12 +15,6 @@ geom_pie(
   ...
 )
 }
-\arguments{
-\item{...}{}
-}
-\value{
-
-}
 \description{
 Draw a pie chart
 }

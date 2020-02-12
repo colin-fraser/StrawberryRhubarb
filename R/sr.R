@@ -6,33 +6,6 @@ rad_to_deg <- function(x) {
   x * 180 / pi
 }
 
-slice2 <- function(theta, theta_0 = 0, points = 100, gp_top = NULL, gp_bottom = NULL,
-                  gp_arc = NULL, gp_fill = NULL) {
-
-  thetas <- seq(theta_0, theta + theta_0, length.out = points)
-  x <- cos(thetas)
-  y <- sin(thetas)
-  arc <- polylineGrob(x = x, y = y, gp = gp_arc)
-  bottom_line <- polylineGrob(x = c(0, x[1]), y = c(0, y[1]), gp = gp_bottom)
-  top_line <- polylineGrob(x = c(0, x[points]), y = c(0, y[points]),
-                           gp = gp_top)
-  fill <- polygonGrob(x = c(0, x), y = c(0, y), gp = gp_fill)
-  gTree(children = gList(arc, bottom_line, top_line, fill))
-}
-
-slice_1poly <- function(theta, theta_0 = 0, gp = NULL) {
-
-  thetas <- seq(theta_0, theta + theta_0, length.out = points)
-  x <- cos(thetas)
-  y <- sin(thetas)
-  arc <- polylineGrob(x = x, y = y, gp = gp_arc)
-  bottom_line <- polylineGrob(x = c(0, x[1]), y = c(0, y[1]), gp = gp_bottom)
-  top_line <- polylineGrob(x = c(0, x[points]), y = c(0, y[points]),
-                           gp = gp_top)
-  fill <- polygonGrob(x = c(0, x), y = c(0, y), gp = gp_fill)
-  gTree(children = gList(arc, bottom_line, top_line, fill))
-}
-
 centered_slice <- function(theta, theta_0 = 0, radius = 0.5, gp = NULL,
                            n_points = 100) {
   thetas <- seq(theta_0, theta + theta_0, length.out = n_points)
@@ -43,21 +16,8 @@ centered_slice <- function(theta, theta_0 = 0, radius = 0.5, gp = NULL,
   polygonGrob(x = c(x_0, x), y = c(y_0, y), gp = gp)
 }
 
-#' Draw a slice
-#'
-#' @param theta
-#' @param theta_0
-#' @param x_0
-#' @param y_0
-#' @param radius
-#' @param gp
-#' @param n_points
-#'
-#' @return
-#' @export
-#'
-#' @import ggplot2
-#' @import grid
+# draw a single slice starting at initial arm theta_0 and spanning angle
+# theta, centered at (x_0, y_0), of radius 0.5
 pie_slice <- function(theta, theta_0 = 0, x_0 = 0.5, y_0 = 0.5, radius = 0.5, gp = NULL,
                            n_points = 100) {
   # browser()
@@ -104,19 +64,10 @@ GeomPie <- ggproto("GeomPie", Geom,
 
 #' Draw a pie chart
 #'
-#' @param mapping
-#' @param data
-#' @param stat
-#' @param position
-#' @param na.rm
-#' @param show.legend
-#' @param inherit.aes
-#' @param ...
-#'
-#' @return
+
 #' @export
-#'
-#' @examples
+#' @import ggplot2 grid
+#' @importFrom graphics points
 geom_pie <- function(mapping = NULL, data = NULL, stat = "pie_rescale",
                     position = "identity", na.rm = FALSE, show.legend = NA,
                     inherit.aes = TRUE, ...) {

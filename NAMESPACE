@@ -2,7 +2,7 @@
 
 export("%>%")
 export(geom_pie)
-export(pie_slice)
 import(ggplot2)
 import(grid)
+importFrom(graphics,points)
 importFrom(magrittr,"%>%")
